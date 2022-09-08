@@ -34,10 +34,11 @@ while True:
 
     if play == "yes":
         # introduction to the game
-        print("Welcome to a guess the word game!\n")
-        print("The word list exclusively contains lower case words, so use lower case letters only!\n")
+        print("Welcome to a 'Guess the word game'!")
+        print("The word list exclusively contains lower case words, so use lower case letters only!")
+        print("-----------------------------------\n")
 
-        while len(correct_letters) > 0 and attempt > 0:
+        while attempt and len(correct_letters) > 0:
             guesses = ', '.join(guessed_letters)
             if attempt == 1:
                 print(f"You have 1 attempt left, you have used: {guesses}")
@@ -81,15 +82,15 @@ while True:
         # if the user runs out of lives the word is printed and the game ends
         if attempt == 0:
             print(hangman[0])
-            print(f"You have ran out of attempts, {random_word} was the solution.")
+            print(f"You have ran out of attempts, {random_word} was the correct solution.\n")
 
         # if the player wins the correctly guessed word is printed
         else:
-            print(f"The correct word was {random_word}. Congrats!")
+            print(f"The correct solution was {random_word}.\n")
 
     # if the player chooses no the game ends
     elif play == "no":
         exit()
 
     else:
-        print("Invalid input")
+        print("Invalid input\n")
