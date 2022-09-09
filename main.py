@@ -28,7 +28,6 @@ correct_letters = set(random_word)
 # the letters that were guessed
 guessed_letters = set()
 
-
 while True:
     play = input("Do you want to play? (yes/no)\n")
 
@@ -94,3 +93,5 @@ while True:
 
     else:
         print("Invalid input\n")
+
+print("Thanks for playing the game!")
