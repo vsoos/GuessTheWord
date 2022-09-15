@@ -1,4 +1,4 @@
-# guess the word game
+# guess the word game with more functions
 import string
 import random
 from hangman import *
@@ -19,13 +19,25 @@ correct_letters = set(random_word)
 guessed_letters = set()
 
 
-def add(random_word):
+def add_guess(random_word):
     for letter in random_word:
         if letter in guessed_letters:
             letters.append(letter)
         else:
             letters.append("_")
     return letter
+
+
+def join_guess(guessed_letters):
+    joined_guess = ', '.join(guessed_letters)
+
+    return joined_guess
+
+
+def join_sol(letters):
+    joined_sol = " ".join(letters)
+
+    return joined_sol
 
 
 while True:
@@ -38,20 +50,20 @@ while True:
         print("-----------------------------------\n")
 
         while attempt and len(correct_letters) > 0:
-            guesses = ', '.join(guessed_letters)
+
             if attempt == 1:
-                print(f"You have 1 attempt left, you have used: {guesses}")
+                print(f"You have 1 attempt left, you have used: {join_guess(guessed_letters)}")
             else:
-                print(f"You have {attempt} attempts left, you have used: {guesses}")
+                print(f"You have {attempt} attempts left, you have used: {join_guess(guessed_letters)}")
 
             # use function to collect letters F1
             letters = []
-            add(random_word)
+            add_guess(random_word)
 
             # print remaining attempts
             print(hangman[attempt])
-            filled_in = " ".join(letters)
-            print(f"Guess the word {filled_in}")
+
+            print(f"Guess the word {join_sol(letters)}")
 
             guess = input("Enter a letter: ")
 
@@ -78,14 +90,14 @@ while True:
                 else:
                     print("Invalid input.\n")
 
-        # if the user runs out of lives the word is printed and the game ends
-        if attempt == 0:
-            print(hangman[0])
-            print(f"You have ran out of attempts, {random_word} was the correct solution.\n")
+            # if the user runs out of lives the word is printed and the game ends
+            if attempt == 0:
+                print(hangman[0])
+                print(f"You have ran out of attempts, {random_word} was the correct solution.\n")
 
-        # if the player wins the correctly guessed word is printed
-        else:
-            print(f"The correct solution was {random_word}.\n")
+            # if the player wins the correctly guessed word is printed
+            else:
+                print(f"The correct solution was {random_word}.\n")
 
     # if the player chooses no the game ends
     elif play == "no":
@@ -93,9 +105,3 @@ while True:
 
     else:
         print("Invalid input\n")
-
-print("Thanks for playing the game!")
-
-lampOn = True
-
-samePosition = 0
